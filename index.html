@@ -194,7 +194,11 @@ const groups = {
       {name: "Co, Earl Maverick", source: "Brown, J. (2021, May 23). What are the significant differences between human acts and acts of man? KnowledgeBurrow.", link: "https://knowledgeburrow.com/what-are-the-significant-differences-between-human-acts-and-acts-of-man"},
       {name: "Lim, Alvin", source: "Ming, J. (1907). Human acts. The Catholic Encyclopedia.", link: "http://www.newadvent.org/cathen/01115a.htm"},
       {name: "Cheng, Shyeanne Mae (late)", source: "Opus Dei. (2014, January 28). Topic 27: Morality of human acts.", link: "https://opusdei.org/en-ph/article/topic-27-morality-of-human-actions/"},
-      {name: "Chung, Giandra Mikalah", source: "The Editors of Encyclopaedia Britannica. (1998, July 20). Free will. Britannica. | Ask Prof. Rachel. (2021, February 23). Lecture 2_Ethical matters: Human act [Video]. YouTube.", link: "https://www.youtube.com/watch?v=dgZf9ddoLDw"}
+      {name: "Chung, Giandra Mikalah", source: "The Editors of Encyclopaedia Britannica. (1998, July 20). Free will. Britannica. | Rogers K. (2009, May 5). Fight-or-flight response. Britannica.", links: [
+  { label: "Free Will Source", url: "https://www.britannica.com/science/free-will" },
+  { label: "Fight-or-Flight Source", url: "https://www.britannica.com/science/fight-or-flight-response" }
+]},
+      {name: "Shi, Jasmine Xinyi", source: "Ask Prof. Rachel. (2021, February 23). Lecture 2_Ethical matters: Human act [Video]. YouTube.", link: "https://www.youtube.com/watch?v=dgZf9ddoLDw"}
     ]
   },
   "Group 3 - Visioneering and Goal Setting": {
@@ -212,7 +216,7 @@ const groups = {
     members: [
       {name: "Chen, Jerry", source: "Cokelet, B. (2024, October 1). New patient-centered ethical theory honored. University of Kansas News.", link: "https://news.ku.edu/news/article/new-patient-centered-ethical-theory-honored-with-philosophers-annual-inclusion"},
       {name: "Lao, Shawn Nathan", source: "PNG Guy. (2024, July 26). Morals vs ethics explained in 2 mins w/ memes [Video]. YouTube.", link: "https://youtu.be/VqfWt2OS4rI"},
-      {name: "Tan, Gerick Luis", source: "Pope, A. (1733-1734). An essay on man. Epistle I, lines 289–294. London: J  Wilford.", poem: `All nature is but art, unknown to thee;<br>All chance, direction, which thou canst not see;<br>All discord, harmony not understood;<br>All partial evil, universal good:<br>And, spite of pride, in erring reason's spite,<br>One truth is clear, Whatever is, is right." <br> - Alexander Pope, An Essay on Man`
+      {name: "Tan, Gerick Luis", source: "Pope, A. (1733-1734). An essay on man. Epistle I, lines 289–294. London: J  Wilford.", link: "", poem: `All nature is but art, unknown to thee;<br>All chance, direction, which thou canst not see;<br>All discord, harmony not understood;<br>All partial evil, universal good:<br>And, spite of pride, in erring reason's spite,<br>One truth is clear, Whatever is, is right." <br> - Alexander Pope, An Essay on Man`
 },
       {name: "Wong, Shan Leister (late)", source: "Pojman, L. P. (1995). Ethical theory: Classical and contemporary readings. Wadsworth.", link: "https://philpapers.org/rec/POJETC"},
       {name: "Sy, Kaira Kirsten", source: "GreggU. (2020, August 5). Ethical theories [Video]. YouTube.", link: "https://www.youtube.com/watch?v=JFQ7HFOUDKc"}
@@ -254,12 +258,14 @@ for (const [groupName, groupData] of Object.entries(groups)) {
     const div = document.createElement('div');
     div.className = 'citation-item';
     div.innerHTML = `
-      <div class="name">${item.name}</div>
-      <div class="source">
-        ${item.source ? `${item.source}<br><a href='${item.link}' target='_blank'>View Source</a>` : ''}
-        ${item.poem ? `<div class='poem'>${item.poem}</div>` : ''}
-      </div>
-    `;
+  <div class="name">${item.name}</div>
+  <div class="source">
+    ${item.source ? `${item.source}<br>` : ''}
+    ${item.link ? `<a href='${item.link}' target='_blank'>View Source</a>` : ''}
+    ${item.links ? item.links.map(l => `<a href='${l.url}' target='_blank' style="margin-right: 10px;">${l.label}</a>`).join(' ') : ''}
+    ${item.poem ? `<div class='poem'>${item.poem}</div>` : ''}
+  </div>
+`;
     list.appendChild(div);
   });
 
